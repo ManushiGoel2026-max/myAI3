@@ -1,56 +1,28 @@
-import { openai } from "@ai-sdk/openai";
-import { fireworks } from "@ai-sdk/fireworks";
-import { wrapLanguageModel, extractReasoningMiddleware } from "ai";
+// config.ts
 
-export const MODEL = openai('gpt-4.1');
+export const OWNER_NAME = `SellerSight`;
 
-// If you want to use a Fireworks model, uncomment the following code and set the FIREWORKS_API_KEY in Vercel
-// NOTE: Use middleware when the reasoning tag is different than think. (Use ChatGPT to help you understand the middleware)
-// export const MODEL = wrapLanguageModel({
-//     model: fireworks('fireworks/deepseek-r1-0528'),
-//     middleware: extractReasoningMiddleware({ tagName: 'think' }), // Use this only when using Deepseek
-// });
+export const OWNER_DESCRIPTION = `
+SellerSight is an AI-powered competitive review intelligence assistant for Amazon third-party sellers.
+It analyzes public Amazon reviews, competitor listings, and feature-level sentiment to identify why ratings move,
+where competitors outperform you, and which fixes will have the highest impact on reviews, returns, and conversion.
+`;
 
+export const ASSISTANT_TITLE = `SellerSight – Review Intelligence for Amazon Sellers`;
 
-function getDateAndTime(): string {
-    const now = new Date();
-    const dateStr = now.toLocaleDateString('en-US', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
-    const timeStr = now.toLocaleTimeString('en-US', {
-        hour: 'numeric',
-        minute: '2-digit',
-        timeZoneName: 'short'
-    });
-    return `The day today is ${dateStr} and the time right now is ${timeStr}.`;
-}
+export const ASSISTANT_TAGLINE = `Understand reviews faster. Fix what matters. Beat competitors.`;
 
-export const DATE_AND_TIME = getDateAndTime();
+// Optional: what you show in the sidebar / landing hero
+export const APP_LONG_DESCRIPTION = `
+SellerSight turns noisy Amazon review text into structured, actionable insight.
+Upload your review exports, returns data, and support logs, then compare against competitor ASINs.
+The assistant will:
+• detect feature-level themes (durability, sizing, packaging, shipping, listing clarity, etc.),
+• track sentiment trends over time,
+• run gap analysis vs competitors, and
+• recommend prioritized fixes with supporting review evidence.
+`;
 
-export const AI_NAME = "MyAI3";
-export const OWNER_NAME = "FirstName LastName";
-
-export const WELCOME_MESSAGE = `Hello! I'm ${AI_NAME}, an AI assistant created by ${OWNER_NAME}.`
-
-export const CLEAR_CHAT_TEXT = "New";
-
-export const MODERATION_DENIAL_MESSAGE_SEXUAL = "I can't discuss explicit sexual content. Please ask something else.";
-export const MODERATION_DENIAL_MESSAGE_SEXUAL_MINORS = "I can't discuss content involving minors in a sexual context. Please ask something else.";
-export const MODERATION_DENIAL_MESSAGE_HARASSMENT = "I can't engage with harassing content. Please be respectful.";
-export const MODERATION_DENIAL_MESSAGE_HARASSMENT_THREATENING = "I can't engage with threatening or harassing content. Please be respectful.";
-export const MODERATION_DENIAL_MESSAGE_HATE = "I can't engage with hateful content. Please be respectful.";
-export const MODERATION_DENIAL_MESSAGE_HATE_THREATENING = "I can't engage with threatening hate speech. Please be respectful.";
-export const MODERATION_DENIAL_MESSAGE_ILLICIT = "I can't discuss illegal activities. Please ask something else.";
-export const MODERATION_DENIAL_MESSAGE_ILLICIT_VIOLENT = "I can't discuss violent illegal activities. Please ask something else.";
-export const MODERATION_DENIAL_MESSAGE_SELF_HARM = "I can't discuss self-harm. If you're struggling, please reach out to a mental health professional or crisis helpline.";
-export const MODERATION_DENIAL_MESSAGE_SELF_HARM_INTENT = "I can't discuss self-harm intentions. If you're struggling, please reach out to a mental health professional or crisis helpline.";
-export const MODERATION_DENIAL_MESSAGE_SELF_HARM_INSTRUCTIONS = "I can't provide instructions related to self-harm. If you're struggling, please reach out to a mental health professional or crisis helpline.";
-export const MODERATION_DENIAL_MESSAGE_VIOLENCE = "I can't discuss violent content. Please ask something else.";
-export const MODERATION_DENIAL_MESSAGE_VIOLENCE_GRAPHIC = "I can't discuss graphic violent content. Please ask something else.";
-export const MODERATION_DENIAL_MESSAGE_DEFAULT = "Your message violates our guidelines. I can't answer that.";
-
-export const PINECONE_TOP_K = 40;
-export const PINECONE_INDEX_NAME = "my-ai";
+// If myAI3 has feature flags, keep Exa + Pinecone ON
+export const ENABLE_WEB_SEARCH = true;  // uses EXA_API_KEY for live web data when needed
+export const ENABLE_VECTOR_DB = true;   // uses Pinecone for your review / doc knowledge base
