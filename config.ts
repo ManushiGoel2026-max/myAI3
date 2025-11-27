@@ -9,18 +9,19 @@ export const MODEL = openai('gpt-4.1');
 // ---------------------------------------------------------------------------
 function getDateAndTime(): string {
   const now = new Date();
-  const dateStr = now.toLocaleDateString('en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
+  const dateStr = now.toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
-  const timeStr = now.toLocaleTimeString('en-US', {
-    hour: 'numeric',
-    minute: '2-digit',
-    timeZoneName: 'short'
+  const timeStr = now.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    timeZoneName: "short",
   });
-  return The day today is ${dateStr} and the time right now is ${timeStr}`;
+
+  return `The day today is ${dateStr} and the time right now is ${timeStr}.`;
 }
 
 export const DATE_AND_TIME = getDateAndTime();
